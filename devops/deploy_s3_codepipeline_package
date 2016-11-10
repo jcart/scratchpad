@@ -1,0 +1,5 @@
+mkdir -p dist
+bundle package --all
+git archive --format zip -o dist/workflow-service.zip HEAD
+zip -rv dist/workflow-service.zip vendor/cache
+aws s3api put-object --bucket wealthsimple-codepipeline --key workflow-service.zip --body dist/workflow-service.zip
